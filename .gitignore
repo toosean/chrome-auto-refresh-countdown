@@ -1,0 +1,11 @@
+# 本机部署说明（含内部路径，不公开）
+DEPLOY.local.md
+
+# 本机调试用的 CDP 客户端
+tools/
+
+# 旧版本备份（git 历史里已有）
+.backup-v1.1.0/
+
+.DS_Store
+*.log

@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Auto Refresh + Countdown",
+  "version": "1.3.0",
+  "description": "在扩展里为当前站点配置刷新间隔，页面只显示一个半透明、鼠标穿透的倒计时胶囊。",
+  "permissions": ["storage", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "自动刷新设置"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ]
+}

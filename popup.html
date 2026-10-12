@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>自动刷新设置</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; width: 264px;
+         font: 13px/1.5 -apple-system, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+         background: #1b1e24; color: #e9ecf1; }
+  header { padding: 12px 14px 10px; border-bottom: 1px solid #2b3038; }
+  .title { font-weight: 600; }
+  .site { margin-top: 3px; font-size: 11px; color: #9aa3b2; word-break: break-all; }
+  main { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 12px; }
+  .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .switch { position: relative; width: 40px; height: 22px; flex: 0 0 auto; }
+  .switch input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+  .track { position: absolute; inset: 0; border-radius: 999px; background: #3a4150; transition: .18s; }
+  .track::after { content: ""; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px;
+                  border-radius: 50%; background: #fff; transition: .18s; }
+  .switch input:checked + .track { background: #2f9e44; }
+  .switch input:checked + .track::after { transform: translateX(18px); }
+  .seg { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .seg button { font: inherit; font-size: 12px; padding: 6px 0; cursor: pointer;
+                background: #252a33; color: #cfd6e2; border: 1px solid #333a45; border-radius: 8px; }
+  .seg button[aria-pressed="true"] { background: #2f9e44; border-color: #2f9e44; color: #fff; }
+  .hint { font-size: 11px; color: #9aa3b2; min-height: 16px; }
+  .unsupported { padding: 16px 14px; font-size: 12px; line-height: 1.7; color: #ffb020; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="title">自动刷新</div>
+    <div class="site" id="site">读取中…</div>
+  </header>
+
+  <main id="panel" hidden>
+    <div class="row">
+      <span id="stateText">未开启</span>
+      <label class="switch">
+        <input type="checkbox" id="toggle">
+        <span class="track"></span>
+      </label>
+    </div>
+    <div class="seg" id="seg"></div>
+    <div class="hint" id="hint">开关和间隔都在这里配置，页面上不会再有任何按钮。</div>
+  </main>
+
+  <div class="unsupported" id="unsupported" hidden>
+    此页面不支持自动刷新（仅 http / https 网页，且需要是普通标签页）。
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
